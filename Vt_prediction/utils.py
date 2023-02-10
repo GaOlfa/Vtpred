@@ -59,39 +59,55 @@ class MyModels(object):
         self.X_test = X_test
         self.y_test = y_test
 
-    def DecisionTreeRegressor(self, max_depth, min_samples_leaf, random_state):
-        dt_reg = DecisionTreeRegressor(max_depth=max_depth, min_samples_leaf=min_samples_leaf, random_state=random_state)
+    def DecisionTreeRegressor(self, best_params):
+        dt_reg = DecisionTreeRegressor(splitter=["splitter"],
+                                       max_depth=best_params["max_depth"],
+                                       min_samples_leaf=best_params["min_samples_leaf"],
+                                       min_weight_fraction_leaf=best_params["min_weight_fraction_leaf"],
+                                       max_features=["max_features"],
+                                       max_leaf_nodes=["max_leaf_nodes"])
         dt_reg.fit(self.X_train, self.y_train)
         test_pred = dt_reg.predict(self.X_test)
         train_pred = dt_reg.predict(self.X_train)
         return (test_pred, train_pred )
 
     def RandomForestRegressor(self, best_params):
-        rf_reg = RandomForestRegressor(max_depth=best_params["max_depth"], max_features=best_params["max_features"], min_samples_leaf=best_params["min_samples_leaf"], min_samples_split=best_params["min_samples_split"], n_estimators=best_params["n_estimators"])
+        rf_reg = RandomForestRegressor(bootstrap=True,
+                                       max_depth=best_params["max_depth"],
+                                       max_features=best_params["max_features"],
+                                       min_samples_leaf=best_params["min_samples_leaf"],
+                                       min_samples_split=best_params["min_samples_split"],
+                                       n_estimators=best_params["n_estimators"])
         rf_reg.fit(self.X_train, self.y_train)
         test_pred = rf_reg.predict(self.X_test)
         train_pred = rf_reg.predict(self.X_train)
         return (test_pred, train_pred )
 
-    def XGBoostRegressor(self):
-        xgb_reg = XGBRegressor()
+    def XGBoostRegressor(self, best_params):
+        xgb_reg = XGBRegressor(max_depth=best_params["max_depth"],
+                               learning_rate=best_params["learning_rate"],
+                               n_estimators=best_params["n_estimators"],
+                               colsample_bytree=best_params["colsample_bytree"])
         xgb_reg.fit(self.X_train, self.y_train)
         test_pred = xgb_reg.predict(self.X_test)
         train_pred = xgb_reg.predict(self.X_train)
         return (test_pred, train_pred)
 
-    def GradientBoostRegressor(self):
-        gb_reg = GradientBoostingRegressor()
+    def GradientBoostRegressor(self, best_params):
+        gb_reg = GradientBoostingRegressor(learning_rate=best_params["learning_rate"],
+                                           min_samples_split=best_params["min_samples_split"],
+                                           min_samples_leaf=best_params["min_samples_leaf"],
+                                           max_depth=best_params["max_depth"])
         gb_reg.fit(self.X_train, self.y_train)
         test_pred = gb_reg.predict(self.X_test)
         train_pred = gb_reg.predict(self.X_train)
         return (test_pred, train_pred)
 
-    def BayesianRidgeRegression(self):
-        br_reg = BayesianRidge()
-        br_reg.fit(self.X_train, self.y_train)
-        test_pred = br_reg.predict(self.X_test)
-        train_pred = br_reg.predict(self.X_train)
-        return (test_pred, train_pred)
+    # def BayesianRidgeRegression(self):
+    #     br_reg = BayesianRidge()
+    #     br_reg.fit(self.X_train, self.y_train)
+    #     test_pred = br_reg.predict(self.X_test)
+    #     train_pred = br_reg.predict(self.X_train)
+    #     return (test_pred, train_pred)
 
 
