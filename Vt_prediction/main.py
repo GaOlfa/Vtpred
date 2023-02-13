@@ -38,14 +38,14 @@ def main():
     #
     #
 
-    # best_grid_rf = hyperparameters_tuning('rf', param_grid_rf, X_train, y_train)
-    # #print(best_grid_rf)
-    # print("Random Forest Regressor Results:\n")
-    # test_pred, train_pred = trainer.RandomForestRegressor(best_grid_rf)
-    # print('Test set evaluation:\n_____________________________________')
-    # utils.print_evaluate(y_test, test_pred)
-    # print('Train set evaluation:\n_____________________________________')
-    # utils.print_evaluate(y_train, train_pred)
+    best_grid_rf = hyperparameters_tuning('rf', param_grid_rf, X_train, y_train)
+    #print(best_grid_rf)
+    print("Random Forest Regressor Results:\n")
+    test_pred, train_pred = trainer.RandomForestRegressor(best_grid_rf)
+    print('Test set evaluation:\n_____________________________________')
+    utils.print_evaluate(y_test, test_pred)
+    print('Train set evaluation:\n_____________________________________')
+    utils.print_evaluate(y_train, train_pred)
     # results_df = results_df.append(pd.DataFrame(data=[["Random Forest Regressor", *utils.evaluate(y_test, test_pred)]],
     #                                             columns=['Model', 'MAE', 'MSE', 'RMSE', 'R2 Square']), ignore_index=True)
 
@@ -61,15 +61,15 @@ def main():
     # results_df = results_df.append(pd.DataFrame(data=[["XGBoost Regressor", *utils.evaluate(y_test, test_pred)]],
     #                                             columns=['Model', 'MAE', 'MSE', 'RMSE', 'R2 Square']), ignore_index=True)
 
-
-    best_grid_gbr = hyperparameters_tuning('gbr', param_grid_gbr, X_train, y_train)
-    #print(best_grid_xgbr)
-    print("Gradient Boost Regressor Results:\n")
-    test_pred, train_pred = trainer.GradientBoostRegressor(best_grid_gbr)
-    print('Test set evaluation:\n_____________________________________')
-    utils.print_evaluate(y_test, test_pred)
-    print('Train set evaluation:\n_____________________________________')
-    utils.print_evaluate(y_train, train_pred)
+    #
+    # best_grid_gbr = hyperparameters_tuning('gbr', param_grid_gbr, X_train, y_train)
+    # #print(best_grid_xgbr)
+    # print("Gradient Boost Regressor Results:\n")
+    # test_pred, train_pred = trainer.GradientBoostRegressor(best_grid_gbr)
+    # print('Test set evaluation:\n_____________________________________')
+    # utils.print_evaluate(y_test, test_pred)
+    # print('Train set evaluation:\n_____________________________________')
+    # utils.print_evaluate(y_train, train_pred)
     # results_df = results_df.append(pd.DataFrame(data=[["Gradient Boost Regressor", *utils.evaluate(y_test, test_pred)]],
     #                                             columns=['Model', 'MAE', 'MSE', 'RMSE', 'R2 Square']), ignore_index=True)
 
