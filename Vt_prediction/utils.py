@@ -74,7 +74,6 @@ class MyModels(object):
     def RandomForestRegressor(self, best_params):
         rf_reg = RandomForestRegressor(bootstrap=True,
                                        max_depth=best_params["max_depth"],
-                                       max_features=best_params["max_features"],
                                        min_samples_leaf=best_params["min_samples_leaf"],
                                        min_samples_split=best_params["min_samples_split"],
                                        n_estimators=best_params["n_estimators"])
